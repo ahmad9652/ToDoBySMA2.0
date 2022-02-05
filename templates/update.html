@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}To-Do{% endblock title %}
+{% block css %}
+  <style>
+    body {
+      background: url('/static/img/index5.jpg') no-repeat   center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+       background-size: cover;
+    }
+    #page{
+        min-height: 96vh;
+    }
+  </style>
+{% endblock css %}
+{% block updateactive %}active{% endblock updateactive %}
+{% block body %}
+    
+    <div class="container my-3">
+        <h2 class="text-center">Update /Delete Task</h2>
+        <form action="/update/{{taskupdated.sno}}" method = "post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label" name='tasktitle' >Task Title</label>
+              <input required name="tasktitle" type="text" class="form-control" id="exampleInputEmail1" value="{{taskupdated.Task}}" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label" name='taskdescription'>Task Description</label>
+              <textarea name="taskdescription" id="" cols="30" rows="10" class="form-control" placeholder="{{taskupdated.Task_Description}}">{{taskupdated.Task_Description}}</textarea>
+            </div>
+            <a href="/delete/{{taskupdated.sno}}" type="button" class="btn btn-outline-danger">Delete</button></a>
+            <button type="submit" class="btn btn-outline-success">Update</button>
+          </form>
+    </div>
+{% endblock body %}    

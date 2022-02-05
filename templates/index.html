@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}To-Do{% endblock title %}
+{% block css %}
+  <style>
+    body {
+      background: url('/static/img/index5.jpg') no-repeat   center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+       background-size: cover;
+       min-height: 85vh;
+    }
+  </style>
+{% endblock css %}
+{% block homeactive %}active{% endblock homeactive %}
+{% block body %}
+    {% if user.is_authenticated %}
+    <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Welcome {{user.username}}!</h4>
+  <p>Welcome to our website. Make your ToDo list here and Never Forget anything. It's Completely free and Easy to use.</p>
+  <hr>
+  <p class="mb-0">Have querry? Contact us through contact page we will let you soon.</p>
+</div>
+    <div class="container my-3">
+        <h2 class="text-center">Add a Task</h2>
+        <form action="/" method = "post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label" name='tasktitle' >Task Title</label>
+              <input required name="tasktitle" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label" name='taskdescription'>Task Description</label>
+              <textarea name="taskdescription" id="" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+    {% else %}
+    <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Welcome!</h4>
+  <p>Welcome to our website.Make your ToDo list here and Never Forget anything. <strong>SignUp and login to make a list.</strong> It's Completely free and Easy to use.</p>
+  <hr>
+  <p class="mb-0">Have querry? Contact us through contact page we will let you soon.</p>
+</div>
+    <div class="container my-3">
+        <h2 class="text-center">Add a Task</h2>
+        <form>
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label" name='tasktitle' >Task Title</label>
+              <input required name="tasktitle" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled="true">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label" name='taskdescription'>Task Description</label>
+              <textarea name="taskdescription" id="" cols="30" rows="10" class="form-control" disabled="true"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+    
+    {% endif %}
+{% endblock body %}    

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block css %}<style>
+      body {
+        padding-bottom: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+      <style>
+        body {
+        background: url('/static/img/index5.jpg') no-repeat   center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      #page{
+        min-height: 96vh;
+      }
+      </style>
+{% endblock css %}
+{% block taskactive %}
+active
+{% endblock taskactive %}
+{% block body %}
+
+    <div class="container my-3 " >
+        <h2 class="text-center text-black fw-bold">Here is the list of your Task</h2>
+        <table class="table table-striped text-black">
+            <thead>
+              <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Task Title</th>
+                <th scope="col">Task Description</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for task in tasks %}
+              <tr>
+                <th scope="row" class="text-black fw-bold">{{forloop.counter}}</th>
+                <td class="text-black fw-bold">{{task.Task}}</td>
+                <td class="text-black fw-bold">{{task.Task_Description}}</td>
+                <td class="text-black fw-bold">{{task.Time}}</td>
+                <td><a href="/update/{{task.sno}}"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Update / Delete
+                </button></a></td>
+            </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          
+        
+    </div>
+{% endblock body %}
